@@ -1,0 +1,21 @@
+<h1>タスク一覧</h1>
+<ul>
+  <% @tasks.each do |task| %>
+    <li><%= link_to task.title, task_path(task) %></li>
+  <% end %>
+</ul>
+
+<h3>タスク登録</h3>
+<%= form_with model: @task, local: true do |form| %>
+  <p>
+    タイトル<br>
+    <%= form.text_field :title %>
+  </p>
+  <p>
+    内容<br>
+    <%= form.text_field :body %>
+  </p>
+
+  <%= form.submit "登録" %>
+
+<% end %>
