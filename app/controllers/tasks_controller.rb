@@ -2,6 +2,7 @@ class TasksController < ApplicationController
   before_action :set_task, only: [:show, :edit, :update, :destroy]
 
   def index
+    @tasks = Task.all
     @task = Task.new
   end
 
@@ -10,10 +11,10 @@ class TasksController < ApplicationController
 
   def create
     @task = Task.new(task_params)
+    @tasks = Task.all
     if @task.save
       redirect_to tasks_path
     else
-      flash.now[:notice] = "Some errors occured"
       flash.now[:alert] = @task.errors.full_messages
       render :index
     end
