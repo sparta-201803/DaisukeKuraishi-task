@@ -1,0 +1,22 @@
+<h1>書籍更新フォーム</h1>
+
+<% if flash["alert"].present? %>
+  <div class="error_color">
+    <h3>[エラー内容]</h3>
+      <% flash["alert"].each do |value| %>
+        <%= content_tag(:div, value) %>
+      <% end %>
+  </div>
+<% end %>
+
+<%= form_with model: @task, local: true do |form| %>
+  <p>
+    タイトル<br>
+      <%= form.text_field :title %>
+  </p>
+  <p>
+    内容<br>
+      <%= form.text_area :body %>
+  </p>
+  <%= form.submit "更新" %>
+<% end %>
